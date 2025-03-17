@@ -121,3 +121,9 @@ td {
         font-size: 14px;
     }
 }
+
+@media (max-width: 450px) {
+    h1 {
+        font-size: 3.5rem;
+    }
+}
