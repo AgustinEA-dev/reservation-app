@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #0a192f;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 4rem;
+    font-weight: bold;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-transform: uppercase;
+    background-image: linear-gradient(90deg, #64ffda, #4d5fff, #ffffff, #112240);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientAnimation 4s infinite linear alternate;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+h2,
+h3 {
+    color: #64ffda;
+    margin: 30px;
+}
+
+form {
+    background-color: #112240;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin: 20px auto;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+label {
+    font-weight: bold;
+    text-align: left;
+    width: 100%;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #64ffda;
+    border-radius: 5px;
+    background-color: #0a192f;
+    color: #ffffff;
+    width: 100%;
+    text-align: left;
+}
+
+button {
+    background-color: #64ffda;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+    width: 100%;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #52e0c4;
+}
+
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #112240;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th,
+td {
+    border: 1px solid #64ffda;
+    padding: 15px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.reserved {
+    background-color: #ff4d4d;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    form {
+        max-width: 90%;
+    }
+
+    input,
+    button {
+        font-size: 14px;
+    }
+}
