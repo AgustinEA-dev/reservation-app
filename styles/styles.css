@@ -6,18 +6,34 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #0a192f;
-    color: white;
+    background-color: #f4f4f4;
+    color: #333;
     text-align: center;
     padding: 20px;
+    background-image: url("../assets/theatre-background.avif");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.842);
+    z-index: -1;
+    pointer-events: none;
 }
 
 h1 {
-    font-size: 4rem;
+    font-size: 5rem;
     font-weight: bold;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     text-transform: uppercase;
-    background-image: linear-gradient(90deg, #64ffda, #4d5fff, #ffffff, #112240);
+    background-image: linear-gradient(90deg, #ff8c00, #ff5e62, #ffcc70, #ffeb99);
     background-size: 300% 300%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -26,24 +42,18 @@ h1 {
     letter-spacing: 1px;
 }
 
-@keyframes gradientAnimation {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    100% {
-        background-position: 100% 50%;
-    }
-}
-
 h2,
 h3 {
-    color: #64ffda;
+    color: #ffffff;
     margin: 30px;
+    font-family: "Mynerve", cursive;
+    font-size: 2.5rem;
+    font-weight: bold;
+    font-style: normal;
 }
 
 form {
-    background-color: #112240;
+    background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
     display: flex;
@@ -53,7 +63,7 @@ form {
     margin: 20px auto;
     max-width: 400px;
     width: 90%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 label {
@@ -64,16 +74,23 @@ label {
 
 input {
     padding: 10px;
-    border: 1px solid #64ffda;
+    border: 1px solid #ff8c00;
     border-radius: 5px;
-    background-color: #0a192f;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #333;
     width: 100%;
     text-align: left;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+}
+
+input:focus {
+    outline: 2px solid #baf5ff;
+    border-color: #6be9ff;
 }
 
 button {
-    background-color: #64ffda;
+    background-color: #ff8c00;
     border: none;
     padding: 12px 20px;
     font-size: 16px;
@@ -82,33 +99,84 @@ button {
     transition: 0.3s;
     width: 100%;
     font-weight: bold;
+    color: #ffffff;
+    margin: 5px 0;
 }
 
 button:hover {
-    background-color: #52e0c4;
+    background-color: #ff5e62;
+}
+
+.stage {
+    width: 50%;
+    height: 150px;
+    border: 2px solid #ff5e62;
+    border-radius: 30px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transform: rotateX(10deg);
+}
+
+.stage h2 {
+    color: white;
+    font-size: 24px;
+    font-family: 'Mynerve', sans-serif;
+}
+
+.table-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    perspective: 100px;
+    display: flex;
+    justify-content: center;
 }
 
 table {
-    width: 80%;
+    width: 60%;
     margin: 20px auto;
     border-collapse: collapse;
-    background-color: #112240;
+    background-color: #ffffff;
     border-radius: 10px;
     overflow: hidden;
+    transform: rotateX(10deg);
 }
 
 th,
 td {
-    border: 1px solid #64ffda;
+    border: 1px solid #ff8c00;
     padding: 15px;
     text-align: center;
-    color: #ffffff;
+    color: #333;
+    transition: all 1s;
 }
 
 .reserved {
-    background-color: #ff4d4d;
+    background-color: #ff5e62;
     color: #ffffff;
     font-weight: bold;
+}
+
+.confirmation-p {
+    color: #ffffff;
+    font-size: 1.5rem;
+    margin: 10px;
+}
+
+@keyframes fadeInMove {
+    from {
+        transform: translate(100vw, 100vh) scale(0.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
 }
 
 @media (max-width: 600px) {
@@ -120,10 +188,14 @@ td {
     button {
         font-size: 14px;
     }
+
+    table {
+        width: 90%;
+    }
 }
 
 @media (max-width: 450px) {
     h1 {
-        font-size: 3em;
+        font-size: 4em;
     }
 }

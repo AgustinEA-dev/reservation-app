@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservation - App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Mynerve&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/styles.css">
 </head>
 
@@ -31,12 +34,18 @@
     </form>
 
     <h3>Mapa de asientos</h3>
-    <table id="seatingTable">
-        <tbody>
-        </tbody>
-    </table>
+    <div class="table-container">
+        <div class="stage">
+            <h2>Escenario</h2>
+        </div>
+        <table id="seatingTable">
+            <tbody>
+            </tbody>
+        </table>
+    </div>
 
-    <script src="./scripts/index.js"></script>
+
+    <script type="module" src="./scripts/index.js"></script>
 </body>
 
 </html>
