@@ -12,40 +12,45 @@
 </head>
 
 <body>
-    <h1>BIENVENIDO A RESERVAPP</h1>
-    <h2>Reserva tu asiento</h2>
-    <form id="reservationForm">
-        <label for="firstName">Nombre:</label>
-        <input type="text" id="firstName" name="firstName" required>
+    <section id="form-section">
+        <h1>BIENVENIDO A RESERVAPP</h1>
+        <h2>Reserva tu asiento</h2>
+        <form id="reservationForm">
+            <h3 class="form-indications">Observá el mapa de asientos. Elegí una fila y una columna e ingresá los números
+                correspondientes para reservar tu asiento.</h3>
+            <label for="firstName">Nombre:</label>
+            <input type="text" id="firstName" name="firstName" required>
 
-        <label for="lastName">Apellido:</label>
-        <input type="text" id="lastName" name="lastName" required>
+            <label for="lastName">Apellido:</label>
+            <input type="text" id="lastName" name="lastName" required>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
 
-        <label for="row">Fila:</label>
-        <input type="number" id="row" name="row" min="1" required>
+            <label for="row">Fila:</label>
+            <input type="number" id="row" name="row" min="1" required>
 
-        <label for="column">Columna:</label>
-        <input type="number" id="column" name="column" min="1" required>
+            <label for="column">Columna:</label>
+            <input type="number" id="column" name="column" min="1" required>
 
-        <button type="submit">Reservar</button>
-    </form>
-
-    <h3>Mapa de asientos</h3>
-    <div class="table-container">
-        <div class="stage">
-            <h2>Escenario</h2>
+            <button type="submit">Reservar</button>
+        </form>
+    </section>
+    <section>
+        <h3>Mapa de asientos</h3>
+        <div class="table-container">
+            <div class="stage">
+                <h2>Escenario</h2>
+            </div>
+            <table id="seatingTable">
+                <tbody>
+                </tbody>
+            </table>
         </div>
-        <table id="seatingTable">
-            <tbody>
-            </tbody>
-        </table>
-    </div>
 
-
+    </section>
     <script type="module" src="./scripts/index.js"></script>
+    <script src="./scripts/animations.js"></script>
 </body>
 
 </html>
