@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const observerOptions = {
         root: null,
         rootMargin: "0px",
-        threshold: 0.5,
+        threshold: 0.4,
     };
 
     const stageObserver = new IntersectionObserver((entries) => {
