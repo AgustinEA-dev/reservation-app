@@ -30,21 +30,13 @@ document.getElementById('reservationForm').addEventListener('submit', function (
             showModalSeatNotAvailable();
         }
     } else {
-        alert('Ubicación no válida');
+        showModalNonExistentSeat();
     }
 });
 
 function showConfirmationModal(row, column, firstName, lastName, cell) {
     let modal = document.createElement('div');
-    modal.style.position = 'fixed';
-    modal.style.top = '50%';
-    modal.style.left = '50%';
-    modal.style.transform = 'translate(-50%, -50%)';
-    modal.style.backgroundColor = '#112240';
-    modal.style.padding = '20px';
-    modal.style.borderRadius = '10px';
-    modal.style.color = 'white';
-    modal.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.5)';
+    modal.classList.add("confirmation-modal")
     modal.innerHTML = `<h2>Confirmación</h2>
                         <p class="confirmation-p">¿Confirmar reserva para el asiento (${row}, ${column})?</p>
                         <p>Reservado a nombre de: ${firstName} ${lastName}</p>
@@ -66,17 +58,9 @@ function showConfirmationModal(row, column, firstName, lastName, cell) {
 
 function showModal(row, column, firstName, lastName) {
     let modal = document.createElement('div');
-    modal.style.position = 'fixed';
-    modal.style.top = '50%';
-    modal.style.left = '50%';
-    modal.style.transform = 'translate(-50%, -50%)';
-    modal.style.backgroundColor = '#112240';
-    modal.style.padding = '20px';
-    modal.style.borderRadius = '10px';
-    modal.style.color = 'white';
-    modal.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.5)';
+    modal.classList.add("confirmation-modal")
     modal.innerHTML = `<h2>Reserva Confirmada</h2>
-                        <p class="confirmation-p">Asiento reservado: (${row}, ${column})</p>
+                        <p ">Asiento reservado: (${row}, ${column})</p>
                         <p>A nombre de: ${firstName} ${lastName}</p>
                         <button id='closeModal'>Cerrar</button>`;
 
@@ -89,16 +73,20 @@ function showModal(row, column, firstName, lastName) {
 
 function showModalSeatNotAvailable() {
     let modal = document.createElement('div');
-    modal.style.position = 'fixed';
-    modal.style.top = '50%';
-    modal.style.left = '50%';
-    modal.style.transform = 'translate(-50%, -50%)';
-    modal.style.backgroundColor = '#112240';
-    modal.style.padding = '20px';
-    modal.style.borderRadius = '10px';
-    modal.style.color = 'white';
-    modal.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.5)';
+    modal.classList.add("confirmation-modal")
     modal.innerHTML = `<h2>Este asiento no está disponible</h2>
+                        <button id='closeModal'>Cerrar</button>`;
+    document.body.appendChild(modal);
+
+    document.getElementById('closeModal').addEventListener('click', function () {
+        document.body.removeChild(modal);
+    });
+}
+
+function showModalNonExistentSeat() {
+    let modal = document.createElement('div');
+    modal.classList.add("confirmation-modal")
+    modal.innerHTML = `<h2>Este asiento no existe</h2>
                         <button id='closeModal'>Cerrar</button>`;
     document.body.appendChild(modal);
 
