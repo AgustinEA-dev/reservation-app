@@ -23,20 +23,21 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.842);
+    background-color: rgba(0, 0, 0, 0.678);
     z-index: -1;
-    pointer-events: none;
 }
 
 #form-section {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    padding: 10px;
 }
 
 h1 {
-    font-size: 5rem;
+    font-size: clamp(2.5rem, 5vw, 5rem);
     font-weight: bold;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     text-transform: uppercase;
@@ -45,18 +46,16 @@ h1 {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: gradientAnimation 4s infinite linear alternate;
-    text-align: center;
     letter-spacing: 1px;
 }
 
 h2,
 h3 {
     color: #ffffff;
-    margin: 30px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 2.5rem;
+    margin: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: clamp(1.2rem, 4vw, 2.5rem);
     font-weight: bold;
-    font-style: normal;
 }
 
 form {
@@ -71,13 +70,14 @@ form {
     max-width: 400px;
     width: 90%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
 }
 
 .form-indications {
     color: #000000;
-    font-size: 1.2rem;
-    margin: 0;
-    font-family: sans-serif;
+    font-size: 1.1rem;
+    text-align: center;
 }
 
 label {
@@ -93,14 +93,12 @@ input {
     background-color: #ffffff;
     color: #333;
     width: 100%;
-    text-align: left;
-    outline: none;
     transition: border-color 0.3s ease-in-out;
 }
 
 input:focus {
-    outline: 2px solid #baf5ff;
     border-color: #3bcc7c;
+    outline: 2px solid #baf5ff;
 }
 
 button {
@@ -114,7 +112,6 @@ button {
     width: 100%;
     font-weight: bold;
     color: #ffffff;
-    margin: 5px 0;
 }
 
 button:hover {
@@ -122,7 +119,8 @@ button:hover {
 }
 
 .stage {
-    width: 40%;
+    width: 100%;
+    max-width: 400px;
     height: 150px;
     border: 2px solid #ff5e62;
     border-radius: 30px;
@@ -131,13 +129,15 @@ button:hover {
     justify-content: center;
     align-items: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    transform: rotateX(10deg);
+    transform: rotateX(5deg);
+    margin: 20px auto;
 }
 
 .stage h2 {
     color: white;
-    font-size: 24px;
+    font-size: 1.5rem;
     font-family: 'Mynerve', sans-serif;
+    text-align: center;
 }
 
 .table-container {
@@ -145,33 +145,39 @@ button:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    perspective: 100px;
-    display: flex;
-    justify-content: center;
+    perspective: 500px;
+    margin: 20px auto;
 }
 
 table {
-    width: 60%;
-    margin: 20px auto;
+    width: 90%;
+    max-width: 600px;
     border-collapse: collapse;
     background-color: #ffffff;
     border-radius: 10px;
     overflow: hidden;
     transform: rotateX(10deg);
+    margin: 20px auto;
 }
 
 .stage,
 .table-container {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
     transition: transform 1s ease-out, opacity 1s ease-out;
+}
+
+.animated {
+    opacity: 1;
+    transform: translateY(0) scale(1);
 }
 
 th,
 td {
     border: 1px solid #ff8c00;
-    padding: 15px;
+    padding: 12px;
     text-align: center;
     color: #333;
-    transition: all 1s;
 }
 
 .reserved {
@@ -182,7 +188,7 @@ td {
 
 .confirmation-p {
     color: #ffffff;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     margin: 10px;
 }
 
@@ -198,31 +204,35 @@ td {
     }
 }
 
-@media (max-width: 600px) {
-    form {
-        max-width: 90%;
-    }
-
-    input,
-    button {
-        font-size: 14px;
-    }
-
+@media (max-width: 768px) {
     h1 {
-        font-size: 5rem;
+        font-size: 4rem;
     }
 
     table {
-        width: 80%;
+        width: 95%;
     }
 
     .stage {
-        width: 70%;
+        width: 80%;
     }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 480px) {
     h1 {
-        font-size: 4em;
+        font-size: 3rem;
+        margin-top: 40px;
+    }
+
+    form {
+        width: 95%;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    .stage {
+        width: 90%;
     }
 }

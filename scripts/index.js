@@ -2,17 +2,6 @@ const rows = 5;
 const cols = 5;
 const seatingTable = document.getElementById('seatingTable').querySelector('tbody');
 
-const tooltip = document.createElement('div');
-tooltip.style.position = 'absolute';
-tooltip.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
-tooltip.style.color = 'white';
-tooltip.style.padding = '5px 10px';
-tooltip.style.borderRadius = '5px';
-tooltip.style.fontSize = '14px';
-tooltip.style.pointerEvents = 'none';
-tooltip.style.display = 'none';
-document.body.appendChild(tooltip);
-
 function generateTable() {
     seatingTable.innerHTML = '';
     for (let i = 0; i < rows; i++) {
@@ -22,23 +11,6 @@ function generateTable() {
             cell.innerText = 'L';
             cell.dataset.row = i + 1;
             cell.dataset.column = j + 1;
-
-            // Evento de hover para mostrar el tooltip
-            cell.addEventListener('mouseover', function (event) {
-                tooltip.innerText = `Fila: ${cell.dataset.row}, Columna: ${cell.dataset.column}`;
-                tooltip.style.display = 'block';
-            });
-
-            // Evento para seguir el mouse
-            cell.addEventListener('mousemove', function (event) {
-                tooltip.style.top = `${event.clientY + 10}px`;
-                tooltip.style.left = `${event.clientX + 10}px`;
-            });
-
-            // Evento para ocultar el tooltip
-            cell.addEventListener('mouseleave', function () {
-                tooltip.style.display = 'none';
-            });
         }
     }
 }
