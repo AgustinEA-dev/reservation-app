@@ -15,6 +15,11 @@ function generateTable() {
     }
 }
 
+// Crear un overlay para los modales
+const modalOverlay = document.createElement('div');
+modalOverlay.classList.add('modal-overlay');
+document.body.appendChild(modalOverlay);
+
 document.getElementById('reservationForm').addEventListener('submit', function (event) {
     event.preventDefault();
     let row = document.getElementById('row').value;
@@ -35,64 +40,62 @@ document.getElementById('reservationForm').addEventListener('submit', function (
 });
 
 function showConfirmationModal(row, column, firstName, lastName, cell) {
-    let modal = document.createElement('div');
-    modal.classList.add("confirmation-modal")
-    modal.innerHTML = `<h2>Confirmación</h2>
-                        <p class="confirmation-p">¿Confirmar reserva para el asiento (${row}, ${column})?</p>
-                        <p>Reservado a nombre de: ${firstName} ${lastName}</p>
-                        <button id='confirmReservation'>Confirmar</button>
-                        <button id='cancelReservation'>Cancelar</button>`;
+    showOverlay();
+    let modal = createModal(`Confirmación`, `¿Confirmar reserva para el asiento (${row}, ${column})?`,
+        `Reservado a nombre de: ${firstName} ${lastName}`, [
+        {
+            text: 'Confirmar', action: () => {
+                cell.classList.add('reserved');
+                cell.innerText = 'R';
+                closeModal(modal);
+                showModal(`Reserva Confirmada`, `Asiento reservado: (${row}, ${column})`, `A nombre de: ${firstName} ${lastName}`);
+            }
+        },
+        { text: 'Cancelar', action: () => closeModal(modal) }
+    ]);
     document.body.appendChild(modal);
-
-    document.getElementById('confirmReservation').addEventListener('click', function () {
-        cell.classList.add('reserved');
-        cell.innerText = 'R';
-        document.body.removeChild(modal);
-        showModal(row, column, firstName, lastName);
-    });
-
-    document.getElementById('cancelReservation').addEventListener('click', function () {
-        document.body.removeChild(modal);
-    });
 }
 
-function showModal(row, column, firstName, lastName) {
-    let modal = document.createElement('div');
-    modal.classList.add("confirmation-modal")
-    modal.innerHTML = `<h2>Reserva Confirmada</h2>
-                        <p ">Asiento reservado: (${row}, ${column})</p>
-                        <p>A nombre de: ${firstName} ${lastName}</p>
-                        <button id='closeModal'>Cerrar</button>`;
-
+function showModal(title, message, extra = '') {
+    showOverlay();
+    let modal = createModal(title, message, extra, [
+        { text: 'Cerrar', action: () => closeModal(modal) }
+    ]);
     document.body.appendChild(modal);
-
-    document.getElementById('closeModal').addEventListener('click', function () {
-        document.body.removeChild(modal);
-    });
 }
 
 function showModalSeatNotAvailable() {
-    let modal = document.createElement('div');
-    modal.classList.add("confirmation-modal")
-    modal.innerHTML = `<h2>Este asiento no está disponible</h2>
-                        <button id='closeModal'>Cerrar</button>`;
-    document.body.appendChild(modal);
-
-    document.getElementById('closeModal').addEventListener('click', function () {
-        document.body.removeChild(modal);
-    });
+    showModal('Este asiento no está disponible', 'Por favor, elige otro asiento.');
 }
 
 function showModalNonExistentSeat() {
-    let modal = document.createElement('div');
-    modal.classList.add("confirmation-modal")
-    modal.innerHTML = `<h2>Este asiento no existe</h2>
-                        <button id='closeModal'>Cerrar</button>`;
-    document.body.appendChild(modal);
+    showModal('Este asiento no existe', 'Verifica los números de fila y columna.');
+}
 
-    document.getElementById('closeModal').addEventListener('click', function () {
-        document.body.removeChild(modal);
+function createModal(title, message, extra, buttons) {
+    let modal = document.createElement('div');
+    modal.classList.add("confirmation-modal");
+    modal.innerHTML = `<h2>${title}</h2>
+                        <p>${message}</p>
+                        <p>${extra}</p>`;
+
+    buttons.forEach(button => {
+        let btn = document.createElement('button');
+        btn.textContent = button.text;
+        btn.addEventListener('click', button.action);
+        modal.appendChild(btn);
     });
+
+    return modal;
+}
+
+function showOverlay() {
+    modalOverlay.classList.add('active');
+}
+
+function closeModal(modal) {
+    document.body.removeChild(modal);
+    modalOverlay.classList.remove('active');
 }
 
 generateTable();

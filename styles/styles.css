@@ -209,6 +209,7 @@ td {
 
 .confirmation-modal h2 {
     margin: 10px;
+    max-width: 300px;
 }
 
 .confirmation-modal button {
@@ -223,6 +224,27 @@ td {
 
 .confirmation-modal button:hover {
     background-color: #3bcc7c;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fondo oscuro semitransparente */
+    z-index: 1000;
+    /* Asegura que el overlay esté por encima de otros elementos */
+    display: none;
+    /* Ocultamos el overlay por defecto */
+    pointer-events: none;
+    /* Evita interacciones con el overlay directamente */
+}
+
+.modal-overlay.active {
+    display: block;
+    /* Hacemos visible el overlay cuando la clase 'active' se agrega */
 }
 
 @media (max-width: 768px) {
