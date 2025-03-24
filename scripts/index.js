@@ -11,11 +11,20 @@ function generateTable() {
             cell.innerText = 'L';
             cell.dataset.row = i + 1;
             cell.dataset.column = j + 1;
+
+            let seatKey = `seat-${i + 1}-${j + 1}`;
+            if (localStorage.getItem(seatKey) === 'reserved') {
+                cell.classList.add('reserved');
+                cell.innerText = 'R';
+            }
+
+            cell.addEventListener('click', function () {
+                handleSeatReservation(cell);
+            });
         }
     }
 }
 
-// Crear un overlay para los modales
 const modalOverlay = document.createElement('div');
 modalOverlay.classList.add('modal-overlay');
 document.body.appendChild(modalOverlay);
@@ -39,6 +48,22 @@ document.getElementById('reservationForm').addEventListener('submit', function (
     }
 });
 
+function handleSeatReservation(cell) {
+    let row = cell.dataset.row;
+    let column = cell.dataset.column;
+
+    if (cell.classList.contains('reserved')) {
+        return; 
+    }
+
+    let firstName = prompt("Ingresa tu nombre:");
+    let lastName = prompt("Ingresa tu apellido:");
+
+    if (firstName && lastName) {
+        showConfirmationModal(row, column, firstName, lastName, cell);
+    }
+}
+
 function showConfirmationModal(row, column, firstName, lastName, cell) {
     showOverlay();
     let modal = createModal(`Confirmación`, `¿Confirmar reserva para el asiento (${row}, ${column})?`,
@@ -47,8 +72,13 @@ function showConfirmationModal(row, column, firstName, lastName, cell) {
             text: 'Confirmar', action: () => {
                 cell.classList.add('reserved');
                 cell.innerText = 'R';
+
+                localStorage.setItem(`seat-${row}-${column}`, 'reserved');
+
                 closeModal(modal);
                 showModal(`Reserva Confirmada`, `Asiento reservado: (${row}, ${column})`, `A nombre de: ${firstName} ${lastName}`);
+
+                document.getElementById('reservationForm').reset();
             }
         },
         { text: 'Cancelar', action: () => closeModal(modal) }
