@@ -7,7 +7,7 @@ export const teatroObras = [
         horarios: ["19:00", "21:30"],
         descripcion: "Una de las tragedias más conocidas de Shakespeare, que explora temas de venganza, locura y traición.",
         sala: "Sala Principal",
-        imagen: "./assets/hamlet.jpg"
+        imagen: "./assets/hamlet.png"
     },
     {
         id: 2,
