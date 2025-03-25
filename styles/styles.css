@@ -9,7 +9,6 @@ body {
     background-color: #f4f4f4;
     color: #333;
     text-align: center;
-    /* padding: 20px; */
     background-image: url("../assets/theatre-background.avif");
     background-size: cover;
     background-position: center;
@@ -34,10 +33,10 @@ body::before {
     text-align: center;
 }
 
-/* Estilos para la cartelera */
 .cartelera {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    justify-items: center;
     gap: 20px;
     margin-top: 20px;
 }
@@ -64,8 +63,10 @@ body::before {
     width: 100%;
     height: 370px;
     object-fit: cover;
-    border-radius: 5px;
+    object-position: center;
+    border-radius: 10px;
     margin-bottom: 15px;
+    background-color: #f4f4f4;
 }
 
 .obra h2 {
@@ -387,6 +388,7 @@ td {
     color: #28a745;
 }
 
+
 @media (max-width: 768px) {
 
     table {
@@ -400,6 +402,17 @@ td {
     .social-icon {
         font-size: 14px;
         margin: 0 8px;
+    }
+}
+
+@media (max-width: 594px) {
+
+    #cartelera {
+        justify-content: center;
+    }
+
+    .obra {
+        width: 70%;
     }
 }
 
@@ -418,6 +431,10 @@ td {
     }
 
     .stage {
+        width: 90%;
+    }
+
+    .obra {
         width: 90%;
     }
 }

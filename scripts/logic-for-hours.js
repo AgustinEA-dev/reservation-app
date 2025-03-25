@@ -1,4 +1,3 @@
-// Definir los horarios por obra
 const horariosPorObra = {
     "Hamlet": ["19:00", "21:30"],
     "La Casa de Bernarda Alba": ["18:30", "22:00"],
@@ -10,18 +9,14 @@ const horariosPorObra = {
     "La Tempestad": ["20:15", "23:30"],
 };
 
-// Obtener el elemento de la obra y el de los horarios
 const obraSelect = document.getElementById("obra");
 const horaSelect = document.getElementById("hora");
 
-// Función para actualizar los horarios basados en la obra seleccionada
 function actualizarHorarios() {
     const obraSeleccionada = obraSelect.value;
 
-    // Limpiar los horarios previos
     horaSelect.innerHTML = '<option value="">Selecciona un horario</option>';
 
-    // Si hay una obra seleccionada, actualizar los horarios
     if (obraSeleccionada && horariosPorObra[obraSeleccionada]) {
         horariosPorObra[obraSeleccionada].forEach(hora => {
             const option = document.createElement("option");
@@ -32,5 +27,4 @@ function actualizarHorarios() {
     }
 }
 
-// Añadir un event listener para detectar cambios en la selección de la obra
 obraSelect.addEventListener("change", actualizarHorarios);
